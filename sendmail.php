@@ -8,7 +8,7 @@
  * Revision History  :
  * Date        Author      Ref    Revision (Date in YYYYMMDD format)
  /******************************************************************************************************************************/
-require_once('assets/PHPMailer/PHPMailerAutoload.php');
+
 $data = json_decode(file_get_contents("php://input"));
 
 $name = $data->name;
@@ -17,21 +17,9 @@ $mobile = $data->mobile;
 $message = $data->message;
 
 
-$mail = new PHPMailer;                                    // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';
-$mail->IsSMTP();
-$mail->SMTPDebug = 0;       // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'alwinrichard93@gmail.com';                 // SMTP username
-$mail->Password = 'Alwin@8097';                           // SMTP password
-$mail->SMTPSecure = 'TLS';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                     // TCP port to connect to
-$mail->setFrom($email, $name);
-$mail->addReplyTo($email, $name);
-$mail->addAddress('alwinrichard93@gmail.com','Alwin');
-$mail->isHTML(true); 
-$mail->Subject = 'www.redzmedia.in Query';
-$mail->Body    = '<html lang="en">
+$to = 'redzmedia999@gmail.com'; 
+$subject = 'www.redzmedia.in Query';
+$message = '<html lang="en">
                     <body style="margin-top: 2%;padding-top: 2%;background-color: white;margin: 2%;padding: 2%;">
                         <h2 style="color: #CA5757;text-transform: uppercase;text-decoration: underline;font-family: initial;">RedZmedia Website Query!</h2>
                             <h3 style="border-left: 2px #927B7B solid;padding-left: 6px;font-family: serif;font-size: 17px;color: #9E2C2C;letter-spacing: 1px;">Client Name: 
@@ -48,9 +36,12 @@ $mail->Body    = '<html lang="en">
                             </h3>
                     </body>
                 </html>';
-$a=$mail->send();
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+$headers[] = 'To: RedZmedia <redzmedia999@gmail.com>';
+$headers[] = 'From: '.$name.' <'.$email.'>';
+mail($to, $subject, $message, implode("\r\n", $headers));
 
-echo $a;
-
+echo 1;
 
 ?>

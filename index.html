@@ -202,7 +202,7 @@
                     <textarea required ng-model="message"  placeholder="Type your message" name="message" id="message" class="text area required"></textarea>
                   </div>
                   <p class="contact-note">NOTE: Every fields are required!</p>
-                  <button ng-click="sendMail()" ng-disabled="contactForm.$invalid || sendLoadinStatus" class="btn rounded submit-btn">Send Message</button>
+                  <button ng-click="sendMail()" ng-disabled="contactForm.$invalid || sendLoadinStatus" class="btn rounded submit-btn">{{sendBtn}}</button>
                   
                 </form>
               </div>
