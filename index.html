@@ -38,7 +38,7 @@
   <script src="assets/js/modernizr.js"></script>
 </head>
 
-<body class="left-menu home-gallery">
+<body class="left-menu home-gallery" ng-app="myApp" ng-controller="main.controller">
   <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -181,29 +181,29 @@
                   <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
 
-                <form action="mail.php" method="post" id="contactform" class="contact-form">
+                <form name="contactForm" class="contact-form">
                   <div class="form-group inline">
                     <label class="title small" for="name">Name</label>
-                    <input type="text" placeholder="Name" name="name" id="name" class="text name required">
+                    <input type="text" required ng-model="name" placeholder="Name" name="name" id="name" class="text name required">
                   </div>
 
                   <div class="form-group inline">
                     <label class="title small" for="email">E-mail</label>
-                    <input type="email" placeholder="E-mail" name="email" id="email" class="text email required">
+                    <input type="email" required ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="E-mail" name="email" id="email" class="text email required">
                   </div>
 
                   <div class="form-group">
-                    <label class="title small" for="email">Subject</label>
-                    <input type="text" placeholder="Subject" name="subject" id="subject" class="text subject required">
+                    <label class="title small" for="number">Mobile</label>
+                    <input type="number" required ng-model="mobile" placeholder="Mobile Number" name="subject" id="subject" class="text subject required">
                   </div>
 
                   <div class="form-group">
                     <label class="title small" for="message">Type your message</label>
-                    <textarea placeholder="Type your message" name="message" id="message" class="text area required"></textarea>
+                    <textarea required ng-model="message"  placeholder="Type your message" name="message" id="message" class="text area required"></textarea>
                   </div>
-
-                  <!-- <div class="formSent"><p><strong>Your Message Has Been Sent!</strong> Thank you for contacting us.</p></div> -->
-                  <input type="submit" value="Submit" class="btn rounded">
+                  <p class="contact-note">NOTE: Every fields are required!</p>
+                  <button ng-click="sendMail()" ng-disabled="contactForm.$invalid || sendLoadinStatus" class="btn rounded submit-btn">Send Message</button>
+                  
                 </form>
               </div>
             </div>
@@ -222,6 +222,8 @@
   <!--/.page-contact -->
 
   <script src="node_modules/angular/angular.js" type="text/javascript"></script>
+  <script src="main.controller.js" type="text/javascript"></script>
+  <script src="main.service.js" type="text/javascript"></script>  
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
 
   <!-- RS5.3.0.2 Core JS Files -->
