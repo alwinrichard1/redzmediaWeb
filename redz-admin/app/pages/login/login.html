@@ -1,0 +1,12 @@
+<link href="login.css">
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="./app/assets/images/logo-black.png" />
+        <form class="form-signin" name="loginForm">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input ng-model="username" required type="text" id="inputEmail" class="form-control" placeholder="User name"  autofocus>
+            <input ng-model="password" required type="password" id="inputPassword" class="form-control" placeholder="Password" >
+            <button ng-disabled="loginForm.$invalid" ng-click="login()" class="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>
+        </form> 
+    </div>
+</div>

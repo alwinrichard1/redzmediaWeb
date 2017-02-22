@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   
+    <link rel="stylesheet" href="app/assets/css/main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    
+</head>
+
+<body ng-app="supportApp" ng-controller="main.controller">
+    
+    <div ng-if="logedInStatus" class="navigation-btn">
+        <a class="btn btn-primary" href="#/home">Login</a>
+    </div>
+    
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/main.controller.js"></script>
+    <!----------------PAGES------------------------>
+    <!--login page-->
+    <script src="app/pages/login/login.controller.js"></script>
+    <script src="app/pages/login/login.service.js"></script>
+
+    <!--home page-->
+    <script src="app/pages/home/home.controller.js"></script>
+    <script src="app/pages/home/home.service.js"></script>
+</body>
