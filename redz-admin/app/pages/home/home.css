@@ -31,3 +31,52 @@
 .main-option-btn md-icon{
   color: rgb(33,33,33)  !important;
 }
+
+.add-btn{
+        background-color: rgb(96, 92, 168) !important;
+}
+
+.add-user-btn {
+    margin-left: 2%;
+}
+
+.dialog-head {
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #3E3737;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dialog-body {
+    background-color: white;
+}
+
+md-dialog {
+    width: 30%;
+}
+
+md-content {
+    margin: 2%;
+    margin-top:0px !important; 
+    padding-top: 0px  !important; 
+}
+
+.close-dialog {
+    float: right;
+    padding-right: 3%;
+    color: #BF7575;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+form {
+    margin: 2%;
+}
+
+td {
+
+    padding-bottom: 0px !important;
+}

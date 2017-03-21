@@ -166,8 +166,8 @@ html {
     background-color: white;
 }
 
-.logout-btn{
-        float: right !important;
+.logout-btn {
+    float: right !important;
 }
 
 .tab-content {
@@ -197,4 +197,12 @@ html {
 
 .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0;
+}
+
+.search-box {
+    width: 21%;
+    margin-left: 2%;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 8px;
 }

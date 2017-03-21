@@ -1,0 +1,9 @@
+<h3 class="dialog-head">Edit Category! <span class="close-dialog" ng-click="hide()"><i class="material-icons">close</i></span></h3>
+<form name="addCategoryForm">
+    <md-input-container md-no-float class="md-block">
+        <md-icon class="material-icons">library_books</md-icon>
+        <input required ng-model="new_category" type="text" placeholder="Category Name">
+    </md-input-container>
+    <md-button ng-click="updateCategory(new_category)" ng-disabled="addCategoryForm.$invalid || submitBtnStatus" class="md-raised md-primary btn-add-user">{{submitBtnLabel}}</md-button>
+    </md-content>
+</form>

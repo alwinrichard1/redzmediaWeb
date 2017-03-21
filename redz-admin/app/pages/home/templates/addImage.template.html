@@ -1,0 +1,15 @@
+<h3 class="dialog-head">Add new Image! <span class="close-dialog" ng-click="hide()"><i class="material-icons">close</i></span></h3>
+<form name="addUserForm">
+    <md-input-container md-no-float class="md-block">
+        <md-icon class="material-icons">camera_alt</md-icon>
+        <input ng-model="user.phone" type="file" placeholder="Phone Number">
+    </md-input-container>
+    <md-input-container>
+        <label>State</label>
+        <md-select ng-model="demo">
+            <md-option ng-value="Alwin" >ALwin</md-option>
+        </md-select>
+    </md-input-container>
+    <md-button ng-click="insertRecurrece()" ng-disabled="addUserForm.$invalid || submitBtnStatus" class="md-raised md-primary btn-add-user">{{submitBtnLabel}}</md-button>
+    </md-content>
+</form>

@@ -8,41 +8,41 @@
 
 
 <div class="lock-size fab-btn" layout="row" layout-align="right right">
-      <md-fab-speed-dial md-direction="down" md-open="false" class="md-scale">
+    <md-fab-speed-dial md-direction="down" md-open="false" class="md-scale">
         <md-fab-trigger>
-          <md-button aria-label="menu" class="md-fab main-option-btn">
-            <md-tooltip md-direction="right">Menu</md-tooltip>
-            <md-icon class="material-icons">more_vert</md-icon>
-          </md-button>
+            <md-button aria-label="menu" class="md-fab main-option-btn">
+                <md-tooltip md-direction="right">Menu</md-tooltip>
+                <md-icon class="material-icons">more_vert</md-icon>
+            </md-button>
         </md-fab-trigger>
 
         <md-fab-actions>
-          <md-button aria-label="twitter" class="md-fab md-raised md-mini">
-            <md-tooltip md-direction="right">Add new photo</md-tooltip>
-            <md-icon class="material-icons">add_a_photo</md-icon>
-          </md-button>
+            <md-button ng-click="addImage($event)" aria-label="twitter" class="md-fab md-raised md-mini">
+                <md-tooltip md-direction="right">Add new photo</md-tooltip>
+                <md-icon class="material-icons">add_a_photo</md-icon>
+            </md-button>
 
-          <md-button aria-label="facebook" class="md-fab md-raised md-mini">
-            <md-tooltip md-direction="right">Add Category</md-tooltip>
-            <md-icon class="material-icons">library_add</md-icon>
-          </md-button>
+            <md-button ng-click="addCategory($event)" aria-label="facebook" class="md-fab md-raised md-mini">
+                <md-tooltip md-direction="right">Add Category</md-tooltip>
+                <md-icon class="material-icons">library_add</md-icon>
+            </md-button>
 
-          <md-button ng-click="logout($event)" aria-label="Google Hangout" class="md-fab md-raised md-mini">
-            <md-tooltip md-direction="right">Logout</md-tooltip>
-            <md-icon class="material-icons">power_settings_new</md-icon>
-          </md-button>
+            <md-button ng-click="logout($event)" aria-label="Google Hangout" class="md-fab md-raised md-mini">
+                <md-tooltip md-direction="right">Logout</md-tooltip>
+                <md-icon class="material-icons">power_settings_new</md-icon>
+            </md-button>
         </md-fab-actions>
-      </md-fab-speed-dial>
-    </div>
-  </md-content>
-
-
-
-
+    </md-fab-speed-dial>
+</div>
+</md-content>
 <div ng-cloak class="tab-content">
     <md-content>
-        <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Photos">
+        <md-tabs  md-selected="selectedTab" md-dynamic-height md-border-bottom>
+            <md-tab  label="Photos">
+                <md-input-container md-no-float class="md-block search-box">
+                    <md-icon class="material-icons">search</md-icon>
+                    <input ng-model="searchImage" type="text" placeholder="Search Images...">
+                </md-input-container>
                 <md-content class="md-padding">
                     <table class="table table-striped">
                         <thead>
@@ -57,15 +57,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="image in images">
-                                <th scope="row">{{$index+1}}</th>
-                                <td><img width="80" ng-src="http://www.redzmedia.in/assets/images/gallery/{{image.image_name}}"></td>
+                            <tr ng-repeat="image in images | filter:searchImage">
+                                <td scope="row">{{$index+1}}</td>
+                                <td><img width="50" ng-src="http://www.redzmedia.in/assets/images/gallery/{{image.image_name}}"></td>
                                 <td>{{image.image_name}}</td>
                                 <td>{{image.category}}</td>
                                 <td>{{image.uploaded_datetime}}</td>
                                 <td>
-                                    <md-button class="md-raised md-primary">Deactivate</md-button>
-                                    <md-button class="md-raised md-warn">Remove</md-button>
+                                    <md-button class="md-icon-button" aria-label="More">
+                                        <md-tooltip md-direction="left">Edit {{image.image_name}} Details</md-tooltip>
+                                        <md-icon class="material-icons">create</md-icon>
+                                    </md-button>
+                                    <md-button class="md-icon-button" aria-label="More">
+                                        <md-tooltip md-direction="right">Delete {{image.image_name}} forever</md-tooltip>
+                                        <md-icon class="material-icons">delete_forever</md-icon>
+                                    </md-button>
                                 </td>
                             </tr>
                         </tbody>
@@ -73,27 +79,33 @@
                 </md-content>
             </md-tab>
             <md-tab label="Category">
+                <md-input-container md-no-float class="md-block search-box">
+                    <md-icon class="material-icons">search</md-icon>
+                    <input ng-model="searchCategory" type="text" placeholder="Search Category...">
+                </md-input-container>
                 <md-content class="md-padding">
-
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Category</th>
-                                <th>Total Images</th>
+                                <th>Added By</th>
                                 <th>Date</th>
                                 <th>Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Wedding</td>
-                                <td>2</td>
-                                <td>2/12/2017</td>
+                            <tr ng-repeat="category in categories  | filter:searchCategory">
+                                <td scope="row">{{$index+1}}</td>
+                                <td>{{category.category}}</td>
+                                <td>{{category.added_by}}</td>
+                                <td>{{category.added_date}}</td>
                                 <td>
-                                    <md-button class="md-raised md-primary">Edit</md-button>
+                                    <md-button ng-click="editCategory(category)" class="md-icon-button" aria-label="More">
+                                        <md-tooltip md-direction="right">Edit {{category.category}}</md-tooltip>
+                                        <md-icon class="material-icons">create</md-icon>
+                                    </md-button>
                                 </td>
                             </tr>
                         </tbody>
