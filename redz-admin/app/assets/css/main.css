@@ -1,13 +1,17 @@
 /*
  * Specific styles of signin component
  */
+
+
 /*
  * General styles
  */
-body, html {
+
+body,
+html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(195, 214, 199));
 }
 
 .card-container.card {
@@ -24,11 +28,13 @@ body, html {
     cursor: default;
 }
 
+
 /*
  * Card component
  */
+
 .card {
-        background-color: white;
+    background-color: white;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
@@ -42,6 +48,20 @@ body, html {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
+.tab-view {
+    margin-top: 10px;
+}
+
+.nav-item {
+    font-family: 'Lobster', cursive;
+    font-size: 23px;
+    color: white !important;
+}
+
+.nav-item a {
+    color: #860909 !important;
+}
+
 .profile-img-card {
     width: 100%;
     height: 96px;
@@ -49,9 +69,11 @@ body, html {
     display: block;
 }
 
+
 /*
  * Form styles
  */
+
 .profile-name-card {
     font-size: 16px;
     font-weight: bold;
@@ -99,8 +121,8 @@ body, html {
 .form-signin .form-control:focus {
     border-color: rgb(104, 145, 162);
     outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
 }
 
 .btn.btn-signin {
@@ -133,6 +155,46 @@ body, html {
 
 .forgot-password:hover,
 .forgot-password:active,
-.forgot-password:focus{
+.forgot-password:focus {
     color: rgb(12, 97, 33);
+}
+
+.table-condensed {
+    color: #5F3B3B;
+    margin: 3%;
+    width: 94% !important;
+    background-color: white;
+}
+
+.logout-btn{
+        float: right !important;
+}
+
+.tab-content {
+    margin-top: 1% !important;
+}
+
+.table-condensed th {
+    text-align: center;
+}
+
+.table-condensed td {
+    text-align: center;
+}
+
+.tabsdemoDynamicHeight md-content {
+    background-color: transparent !important;
+}
+
+.tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1;
+}
+
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+    background: white;
+}
+
+.tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0;
 }

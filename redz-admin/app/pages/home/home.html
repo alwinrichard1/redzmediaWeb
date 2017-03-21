@@ -1,18 +1,105 @@
-<div class="container">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" role="tab">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" role="tab">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" role="tab">Messages</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" role="tab">Settings</a>
-        </li>
-    </ul>
+<link href="app/pages/home/home.css" rel="stylesheet" />
+<!--
+<md-button ng-click="logout($event)" class="md-fab md-mini md-primary logout-btn" aria-label="add">
+    <md-tooltip>Logout this session</md-tooltip>
+    <md-icon class="material-icons">power_settings_new</md-icon>
+</md-button>
+-->
 
+
+<div class="lock-size fab-btn" layout="row" layout-align="right right">
+      <md-fab-speed-dial md-direction="down" md-open="false" class="md-scale">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab main-option-btn">
+            <md-tooltip md-direction="right">Menu</md-tooltip>
+            <md-icon class="material-icons">more_vert</md-icon>
+          </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+          <md-button aria-label="twitter" class="md-fab md-raised md-mini">
+            <md-tooltip md-direction="right">Add new photo</md-tooltip>
+            <md-icon class="material-icons">add_a_photo</md-icon>
+          </md-button>
+
+          <md-button aria-label="facebook" class="md-fab md-raised md-mini">
+            <md-tooltip md-direction="right">Add Category</md-tooltip>
+            <md-icon class="material-icons">library_add</md-icon>
+          </md-button>
+
+          <md-button ng-click="logout($event)" aria-label="Google Hangout" class="md-fab md-raised md-mini">
+            <md-tooltip md-direction="right">Logout</md-tooltip>
+            <md-icon class="material-icons">power_settings_new</md-icon>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+    </div>
+  </md-content>
+
+
+
+
+<div ng-cloak class="tab-content">
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Photos">
+                <md-content class="md-padding">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Image Name</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="image in images">
+                                <th scope="row">{{$index+1}}</th>
+                                <td><img width="80" ng-src="http://www.redzmedia.in/assets/images/gallery/{{image.image_name}}"></td>
+                                <td>{{image.image_name}}</td>
+                                <td>{{image.category}}</td>
+                                <td>{{image.uploaded_datetime}}</td>
+                                <td>
+                                    <md-button class="md-raised md-primary">Deactivate</md-button>
+                                    <md-button class="md-raised md-warn">Remove</md-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-content>
+            </md-tab>
+            <md-tab label="Category">
+                <md-content class="md-padding">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Total Images</th>
+                                <th>Date</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Wedding</td>
+                                <td>2</td>
+                                <td>2/12/2017</td>
+                                <td>
+                                    <md-button class="md-raised md-primary">Edit</md-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
 </div>

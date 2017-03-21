@@ -1,4 +1,4 @@
-var app = angular.module('supportApp', ["ngRoute"]);
+var app = angular.module('supportApp', ["ngRoute","ngMaterial"]);
 
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider.when("/login", {
