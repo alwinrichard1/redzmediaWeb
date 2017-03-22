@@ -59,16 +59,12 @@
                         <tbody>
                             <tr ng-repeat="image in images | filter:searchImage">
                                 <td scope="row">{{$index+1}}</td>
-                                <td><img width="50" ng-src="http://www.redzmedia.in/assets/images/gallery/{{image.image_name}}"></td>
+                                <td><img width="50" ng-src="app/assets/images/gallery/{{image.image_name}}"></td>
                                 <td>{{image.image_name}}</td>
                                 <td>{{image.category}}</td>
                                 <td>{{image.uploaded_datetime}}</td>
                                 <td>
-                                    <md-button class="md-icon-button" aria-label="More">
-                                        <md-tooltip md-direction="left">Edit {{image.image_name}} Details</md-tooltip>
-                                        <md-icon class="material-icons">create</md-icon>
-                                    </md-button>
-                                    <md-button class="md-icon-button" aria-label="More">
+                                    <md-button ng-click="deleteImage(image,$event)" class="md-icon-button" aria-label="More">
                                         <md-tooltip md-direction="right">Delete {{image.image_name}} forever</md-tooltip>
                                         <md-icon class="material-icons">delete_forever</md-icon>
                                     </md-button>

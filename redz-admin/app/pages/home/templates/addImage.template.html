@@ -1,15 +1,15 @@
 <h3 class="dialog-head">Add new Image! <span class="close-dialog" ng-click="hide()"><i class="material-icons">close</i></span></h3>
-<form name="addUserForm">
+<form name="addImageForm">
     <md-input-container md-no-float class="md-block">
-        <md-icon class="material-icons">camera_alt</md-icon>
-        <input ng-model="user.phone" type="file" placeholder="Phone Number">
+        <md-icon class="material-icons">image</md-icon>
+        <input required class="form-control"  accept="image/*" type="file" file-model="myFile" />
     </md-input-container>
     <md-input-container>
-        <label>State</label>
-        <md-select ng-model="demo">
-            <md-option ng-value="Alwin" >ALwin</md-option>
+        <label>Image Category</label>
+        <md-select required ng-model="image_category">
+            <md-option ng-repeat="category in categories" ng-value="{{category.category_id}}">{{category.category}}</md-option>
         </md-select>
     </md-input-container>
-    <md-button ng-click="insertRecurrece()" ng-disabled="addUserForm.$invalid || submitBtnStatus" class="md-raised md-primary btn-add-user">{{submitBtnLabel}}</md-button>
+    <md-button ng-click="uploadFile()" ng-disabled="addImageForm.$invalid || submitBtnStatus" class="md-raised md-primary btn-add-user">{{submitBtnLabel}}</md-button>
     </md-content>
 </form>

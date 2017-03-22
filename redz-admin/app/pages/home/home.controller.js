@@ -1,29 +1,13 @@
 app.controller('home.controller', function ($scope, $rootScope, homeservice, $mdDialog, $mdToast, mainservice) {
 
     /*FETCH IMAGES FROM DB */
-    homeservice.fetchImages().then(function (response) {
-        $scope.images = response;
-    });
-    
 
-    $scope.photosTab = function () {
-        setTimeout(function () {
-            $scope.$apply(function () {
-                $rootScope.selectedTab = 0;
-                console.log($rootScope.selectedTab);
-            });
-        }, 50);
-
+    $rootScope.fetchImages = function () {
+        homeservice.fetchImages().then(function (response) {
+            $scope.images = response;
+        });
     }
-
-    $scope.categoryTab = function () {
-        setTimeout(function () {
-            $scope.$apply(function () {
-                $rootScope.selectedTab = 1;
-                console.log($rootScope.selectedTab);
-            });
-        }, 50);
-    }
+    $rootScope.fetchImages();
 
     /*FETCH CATEGORY FROM DB */
     $rootScope.fetchCategory = function () {
@@ -63,9 +47,111 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
 
     /**ADD IMAGE DIALOGE CONTROLLER */
     function addImageController($scope, $mdDialog) {
+        homeservice.fetchCategory().then(function (response) {
+            $scope.categories = response;
+        });
+        $scope.submitBtnLabel = "Upload Image";
+        /**UPLOAD FILE */
+        $scope.uploadFile = function () {
+            var file = $scope.myFile;
+            if (file == undefined) {
+                var message = "Please select image file";
+                var alerttoast = $mdToast.simple()
+                    .content(message)
+                    .action('X')
+                    .highlightAction(true)
+                    .hideDelay(5000)
+                    .position('bottom right')
+                $mdToast.show(alerttoast);
+            } else {
+                var file_type = file.type.toLowerCase();
+                if (file_type == 'image/png' || file_type == 'image/jpg' || file_type == 'image/jpeg' || file_type == 'image/gif') {
+
+                    var file = $scope.myFile;
+                    var uploadUrl = "app/pages/home/model/uploadImage.php";
+                    var image_category = $scope.image_category;
+                    var image_name = 'IMG_' + Math.floor((Math.random() * 1000000) + 1);
+                    var current_date = new Date();
+                    console.log(new Date());
+                    homeservice.uploadFileToUrl(file, uploadUrl, image_category, image_name, current_date).then(function (response) {
+                        console.log(response.data);
+                        if (response.data == 1) {
+                            $mdDialog.hide();
+                            setTimeout(function () {
+                                $scope.$apply(function () {
+                                    $rootScope.fetchImages();
+                                });
+                            }, 50);
+                            var message = "Image Updloaded successfully";
+                            var logouttoast = $mdToast.simple()
+                                .content(message)
+                                .action('X')
+                                .highlightAction(true)
+                                .hideDelay(5000)
+                                .position('bottom right')
+                            $mdToast.show(logouttoast);
+                            $rootScope.selectedTab = 1;
+                        } else {
+                            alert("something went wrong");
+                        }
+                    });
+                } else {
+                    var message = "Please select a image file. This is '" + file_type + "' file";
+                    var alerttoast = $mdToast.simple()
+                        .content(message)
+                        .action('X')
+                        .highlightAction(true)
+                        .hideDelay(5000)
+                        .position('bottom right')
+                    $mdToast.show(alerttoast);
+                }
+            }
+        };
+
+
         $scope.hide = function () {
             $mdDialog.hide();
         };
+    }
+
+
+    /**--------------------------------------------DELETE IMAGE----------------------*/
+    $scope.deleteImage = function (image, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Would you like to delete ' + image.image_name + '?')
+            .textContent('All of the details related to this image will be deleted')
+            .ariaLabel('Lucky day')
+            .targetEvent(ev)
+            .ok('Delete')
+            .cancel('Cancel');
+        $mdDialog.show(confirm).then(function () {
+            var input = {
+                "image_id": image.image_id
+            }
+            homeservice.deleteImage(input).then(function (response) {
+                if (response == 1) {
+                    $mdDialog.hide();
+                    setTimeout(function () {
+                        $scope.$apply(function () {
+                            $rootScope.fetchImages();
+                        });
+                    }, 50);
+                    var message = "Image Deleted successfully";
+                    var logouttoast = $mdToast.simple()
+                        .content(message)
+                        .action('X')
+                        .highlightAction(true)
+                        .hideDelay(5000)
+                        .position('bottom right')
+                    $mdToast.show(logouttoast);
+                    $rootScope.selectedTab = 1;
+                } else {
+                    alert("something went wrong");
+                }
+            })
+        }, function () {
+
+        });
     }
 
     /**------------------------------------ADD CATEGORY-------------------------------------- */

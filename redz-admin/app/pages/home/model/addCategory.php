@@ -1,10 +1,10 @@
 <?php
 /********************************************************************************************************************************
  * Project           : rezmedia
- * Program name      : addCategory.php
+ * Program name      : uploadImage.php
  * Author            : Alwin
- * Date created      : 21/03/2017
- * Purpose           : addCategory 
+ * Date created      : 22/03/2017
+ * Purpose           : uploadImage 
  * Revision History  :
  * Date        Author      Ref    Revision (Date in YYYYMMDD format)
  /******************************************************************************************************************************/
