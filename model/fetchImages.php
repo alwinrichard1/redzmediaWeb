@@ -8,7 +8,7 @@
  * Revision History  :
  * Date        Author      Ref    Revision (Date in YYYYMMDD format)
  /******************************************************************************************************************************/
-include("../../db.php");
+include("db.php");
 session_start();
 $dbob = new Database();
 $conn = $dbob->openconnection();

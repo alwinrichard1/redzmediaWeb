@@ -101,7 +101,7 @@
     <!--/.container-fluid -->
   </nav>
 
-  <!-- filter gallery -->
+  <!-- filter gallery 
   <section>
     <div class="container-fluid">
       <div class="row">
@@ -114,12 +114,28 @@
         </div>
       </div>
     </div>
+  </section> -->
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <ul id="filters">
+            <li data-filter="*" class="is-checked"><span>All</span></li>
+            <li ng-repeat="category in categories" data-filter=".{{category.category}}">{{category.category}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- gallery grid -->
   <div class="container-fluid">
     <div class="row">
       <div id="grid-gallery">
+        <div  ng-repeat="image in images" class="grid-item {{image.category}}" data-src="assets/images/gallery/10.jpg">
+          <img src="redz-admin/app/assets/images/gallery/{{image.image_name}}" alt="">
+        </div>
+        <!--
         <div class="grid-item wedding" data-src="assets/images/gallery/10.jpg">
           <img src="assets/images/gallery/10.jpg" alt="">
         </div>
@@ -151,7 +167,7 @@
         <div class="grid-item kids" data-src="assets/images/gallery/9.jpg">
           <img src="assets/images/gallery/9.jpg" alt="">
         </div>
-
+        -->
       </div>
     </div>
   </div>
@@ -189,7 +205,8 @@
 
                   <div class="form-group inline">
                     <label class="title small" for="email">E-mail</label>
-                    <input type="email" required ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="E-mail" name="email" id="email" class="text email required">
+                    <input type="email" required ng-model="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="E-mail"
+                      name="email" id="email" class="text email required">
                   </div>
 
                   <div class="form-group">
@@ -199,11 +216,11 @@
 
                   <div class="form-group">
                     <label class="title small" for="message">Type your message</label>
-                    <textarea required ng-model="message"  placeholder="Type your message" name="message" id="message" class="text area required"></textarea>
+                    <textarea required ng-model="message" placeholder="Type your message" name="message" id="message" class="text area required"></textarea>
                   </div>
                   <p class="contact-note">NOTE: Every fields are required!</p>
                   <button ng-click="sendMail()" ng-disabled="contactForm.$invalid || sendLoadinStatus" class="btn rounded submit-btn">{{sendBtn}}</button>
-                  
+
                 </form>
               </div>
             </div>
@@ -223,7 +240,7 @@
 
   <script src="node_modules/angular/angular.js" type="text/javascript"></script>
   <script src="main.controller.js" type="text/javascript"></script>
-  <script src="main.service.js" type="text/javascript"></script>  
+  <script src="main.service.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
 
   <!-- RS5.3.0.2 Core JS Files -->

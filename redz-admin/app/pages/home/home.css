@@ -86,13 +86,16 @@ td {
     margin-bottom: 0px;
 }
 
-.remove-btn{
+.remove-btn {
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
 }
 
-.remove-btn md-icon{
-   color: white;
+.remove-btn md-icon {
+    color: white;
 }
 
-    
+.image-category-select {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}

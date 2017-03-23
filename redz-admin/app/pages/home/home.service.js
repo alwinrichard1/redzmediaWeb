@@ -42,6 +42,12 @@ app.factory('homeservice', function ($http) {
                 return response.data;
             });
     };
+    homeservice.categoryChange = function (input) {
+        return $http.post("app/pages/home/model/categoryChange.php", input)
+            .then(function (response) {
+                return response.data;
+            });
+    };
     homeservice.uploadFileToUrl = function (file, uploadUrl, image_category, image_name, current_date) {
         var fd = new FormData();
         fd.append('file', file);

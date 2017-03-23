@@ -51,6 +51,7 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
             $scope.categories = response;
         });
         $scope.submitBtnLabel = "Upload Image";
+        $scope.submitBtnStatus = false;
         /**UPLOAD FILE */
         $scope.uploadFile = function () {
             var file = $scope.myFile;
@@ -72,9 +73,17 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
                     var image_category = $scope.image_category;
                     var image_name = 'IMG_' + Math.floor((Math.random() * 1000000) + 1);
                     var current_date = new Date();
-                    console.log(new Date());
+                    $scope.submitBtnLabel = "Uploading image. Please wait...";
+                    $scope.submitBtnStatus = true;
+                    var waitMessage = "Uploading image. Please wait...";
+                    var alerttoast = $mdToast.simple()
+                        .content(waitMessage)
+                        .action('X')
+                        .highlightAction(true)
+                        .hideDelay(5000)
+                        .position('bottom right')
+                    $mdToast.show(alerttoast);
                     homeservice.uploadFileToUrl(file, uploadUrl, image_category, image_name, current_date).then(function (response) {
-                        console.log(response.data);
                         if (response.data == 1) {
                             $mdDialog.hide();
                             setTimeout(function () {
@@ -128,6 +137,14 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
             var input = {
                 "image_id": image.image_id
             }
+            var waitMessage = "Deleting image. Please wait...";
+            var alerttoast = $mdToast.simple()
+                .content(waitMessage)
+                .action('X')
+                .highlightAction(true)
+                .hideDelay(5000)
+                .position('bottom right')
+            $mdToast.show(alerttoast);
             homeservice.deleteImage(input).then(function (response) {
                 if (response == 1) {
                     $mdDialog.hide();
@@ -137,13 +154,13 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
                         });
                     }, 50);
                     var message = "Image Deleted successfully";
-                    var logouttoast = $mdToast.simple()
+                    var alerttoast = $mdToast.simple()
                         .content(message)
                         .action('X')
                         .highlightAction(true)
                         .hideDelay(5000)
                         .position('bottom right')
-                    $mdToast.show(logouttoast);
+                    $mdToast.show(alerttoast);
                     $rootScope.selectedTab = 1;
                 } else {
                     alert("something went wrong");
@@ -153,6 +170,44 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
 
         });
     }
+
+    /**-----------------------CHANGE IMAGE CATEGORY------------------------------*/
+    $scope.categoryChange = function (category_id, image_id) {
+        var input = {
+            "category_id": category_id,
+            "image_id": image_id
+        }
+        var message = "Changing image category. Please wait...";
+        var alerttoast = $mdToast.simple()
+            .content(message)
+            .action('X')
+            .highlightAction(true)
+            .hideDelay(5000)
+            .position('bottom right')
+        $mdToast.show(alerttoast);
+        homeservice.categoryChange(input).then(function (response) {
+            if (response == 1) {
+                $mdDialog.hide();
+                setTimeout(function () {
+                    $scope.$apply(function () {
+                        $rootScope.fetchImages();
+                    });
+                }, 50);
+                var message = "Category changed successfully";
+                var alerttoast = $mdToast.simple()
+                    .content(message)
+                    .action('X')
+                    .highlightAction(true)
+                    .hideDelay(5000)
+                    .position('bottom right')
+                $mdToast.show(alerttoast);
+                $rootScope.selectedTab = 1;
+            } else {
+                alert("something went wrong");
+            }
+        })
+    }
+
 
     /**------------------------------------ADD CATEGORY-------------------------------------- */
     $scope.addCategory = function (ev) {
@@ -179,12 +234,18 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
         };
         $scope.uploadCategory = function () {
             var current_date = new Date();
-
-
             var input = {
                 "category": $scope.new_category,
                 "date": current_date
             }
+            var waitMessage = "Uploading categoty. Please wait...";
+            var alerttoast = $mdToast.simple()
+                .content(waitMessage)
+                .action('X')
+                .highlightAction(true)
+                .hideDelay(5000)
+                .position('bottom right')
+            $mdToast.show(alerttoast);
             homeservice.addCategory(input).then(function (response) {
                 if (response == 1) {
                     $mdDialog.hide();
@@ -241,6 +302,14 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
                 "new_category": $scope.new_category,
                 "id": $rootScope.id
             }
+            var waitMessage = "Updating Category. Please wait...";
+            var alerttoast = $mdToast.simple()
+                .content(waitMessage)
+                .action('X')
+                .highlightAction(true)
+                .hideDelay(5000)
+                .position('bottom right')
+            $mdToast.show(alerttoast);
             homeservice.editCategory(input).then(function (response) {
                 if (response == 1) {
                     setTimeout(function () {
@@ -275,6 +344,14 @@ app.controller('home.controller', function ($scope, $rootScope, homeservice, $md
             .cancel('Cancel');
 
         $mdDialog.show(confirm).then(function () {
+            var waitMessage = "Please wait...";
+            var alerttoast = $mdToast.simple()
+                .content(waitMessage)
+                .action('X')
+                .highlightAction(true)
+                .hideDelay(5000)
+                .position('bottom right')
+            $mdToast.show(alerttoast);
             homeservice.logoutUser().then(function (response) {
                 if (response == 1) {
                     var message = "Logout successfull!";

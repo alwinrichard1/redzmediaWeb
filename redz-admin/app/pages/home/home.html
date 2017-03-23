@@ -37,8 +37,8 @@
 </md-content>
 <div ng-cloak class="tab-content">
     <md-content>
-        <md-tabs  md-selected="selectedTab" md-dynamic-height md-border-bottom>
-            <md-tab  label="Photos">
+        <md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
+            <md-tab label="Photos">
                 <md-input-container md-no-float class="md-block search-box">
                     <md-icon class="material-icons">search</md-icon>
                     <input ng-model="searchImage" type="text" placeholder="Search Images...">
@@ -61,7 +61,11 @@
                                 <td scope="row">{{$index+1}}</td>
                                 <td><img width="50" ng-src="app/assets/images/gallery/{{image.image_name}}"></td>
                                 <td>{{image.image_name}}</td>
-                                <td>{{image.category}}</td>
+                                <td>
+                                    <md-select class="image-category-select" ng-change="categoryChange(image.category_id,image.image_id)" ng-model="image.category_id">
+                                        <md-option ng-repeat="category in categories" ng-value="{{category.category_id}}">{{category.category}}</md-option>
+                                    </md-select>
+                                </td>
                                 <td>{{image.uploaded_datetime}}</td>
                                 <td>
                                     <md-button ng-click="deleteImage(image,$event)" class="md-icon-button" aria-label="More">
