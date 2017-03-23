@@ -36,6 +36,7 @@ while($result=mysqli_fetch_array($qryExecute))
     $data[]=array(
 			"image_id"=>$result['image_id'],
 			"image_name"=>$result['image_name'],
+			"image_link" => "redz-admin/app/assets/images/gallery/".$result['image_name'],
 			"status"=>$result['status'],
 			"uploaded_datetime"=>$result['uploaded_datetime'],
 			"category"=>$result['category'],

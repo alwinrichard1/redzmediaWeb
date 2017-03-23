@@ -100,21 +100,6 @@
     </div>
     <!--/.container-fluid -->
   </nav>
-
-  <!-- filter gallery 
-  <section>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <ul id="filters">
-            <li data-filter="*" class="is-checked"><span>All</span></li>
-            <li data-filter=".wedding">Wedding</li>
-            <li data-filter=".kids">Kids</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section> -->
   <section>
     <div class="container-fluid">
       <div class="row">
@@ -127,47 +112,13 @@
       </div>
     </div>
   </section>
-
   <!-- gallery grid -->
   <div class="container-fluid">
     <div class="row">
       <div id="grid-gallery">
-        <div  ng-repeat="image in images" class="grid-item {{image.category}}" data-src="assets/images/gallery/10.jpg">
-          <img src="redz-admin/app/assets/images/gallery/{{image.image_name}}" alt="">
+        <div ng-repeat="image in images" class="grid-item {{image.category}}" data-src="{{image.image_link}}">
+          <img ng-src="redz-admin/app/assets/images/gallery/{{image.image_name}}" alt="{{image.image_name}}">
         </div>
-        <!--
-        <div class="grid-item wedding" data-src="assets/images/gallery/10.jpg">
-          <img src="assets/images/gallery/10.jpg" alt="">
-        </div>
-        <div class="grid-item wedding" data-src="assets/images/gallery/8.jpg">
-          <img src="assets/images/gallery/8.jpg" alt="">
-        </div>
-        <div class="grid-item wedding" data-src="assets/images/gallery/5.jpg">
-          <img src="assets/images/gallery/5.jpg" alt="">
-        </div>
-        <div class="grid-item kids" data-src="assets/images/gallery/4.jpg">
-          <img src="assets/images/gallery/4.jpg" alt="">
-        </div>
-        <div class="grid-item wedding" data-src="assets/images/gallery/6.jpg">
-          <img src="assets/images/gallery/6.jpg" alt="">
-        </div>
-        <div class="grid-item kids" data-src="assets/images/gallery/3.jpg">
-          <img src="assets/images/gallery/3.jpg" alt="">
-        </div>
-        <div class="grid-item kids" data-src="assets/images/gallery/2.jpg">
-          <img src="assets/images/gallery/2.jpg" alt="">
-        </div>
-        <div class="grid-item wedding" data-src="assets/images/gallery/7.jpg">
-          <img src="assets/images/gallery/7.jpg" alt="">
-        </div>
-
-        <div class="grid-item kids" data-src="assets/images/gallery/1.jpg">
-          <img src="assets/images/gallery/1.jpg" alt="">
-        </div>
-        <div class="grid-item kids" data-src="assets/images/gallery/9.jpg">
-          <img src="assets/images/gallery/9.jpg" alt="">
-        </div>
-        -->
       </div>
     </div>
   </div>

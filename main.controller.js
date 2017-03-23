@@ -5,12 +5,12 @@ app.controller('main.controller', function ($scope, mainService) {
     /**FETCH CATEGORIES */
     mainService.fetchCategory().then(function (response) {
         $scope.categories = response;
-        console.log(response);
     });
     /**FETCH IMAGES */
     mainService.fetchImages().then(function (response) {
         $scope.images = response;
-        console.log(response);
+        console.log($scope.images);
+
     });
 
     /**SEND CONTACT MAIL */

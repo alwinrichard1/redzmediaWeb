@@ -695,7 +695,7 @@ header {
         right: 34px;
         width: 20px;
         height: 20px;
-        background-image: url('../images/cross-menu.png');
+        /*background-image: url('../images/cross-menu.png');*/
         background-position: center;
         background-repeat: no-repeat;
         cursor: pointer;
@@ -1339,7 +1339,7 @@ header {
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: url("../images/cross.svg");
+   /* background-image: url("../images/cross.svg");*/
     background-size: contain;
     cursor: pointer;
     position: absolute;
@@ -4558,7 +4558,7 @@ body.dark.left-menu .navbar .navbar-brand {
 }
 
 body.dark.left-menu #navbar .close-nav {
-    background-image: url('../images/cross-white.svg');
+   /* background-image: url('../images/cross-white.svg');*/
 }
 
 body.dark .nav>li>a {
@@ -4576,7 +4576,7 @@ body.dark .layer-page {
 }
 
 body.dark .close-layer {
-    background-image: url('../images/cross-white.svg');
+  /*  background-image: url('../images/cross-white.svg');*/
 }
 
 body.dark h3 {
